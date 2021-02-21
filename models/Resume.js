@@ -62,12 +62,12 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         required: true
       },
+      location: {
+        type: String
+      },
       passingDate: {
         type: Date,
         required: true
-      },
-      to: {
-        type: Date
       }
     }
   ],

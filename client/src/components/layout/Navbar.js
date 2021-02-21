@@ -12,7 +12,7 @@ const AppNavbar = () => {
         return (
           <Link to="/resume/new">
             <Button variant="light" className="text-success">
-              + Create New Resume
+              + New Resume
             </Button>
           </Link>
         );
@@ -22,7 +22,7 @@ const AppNavbar = () => {
   return (
     <Navbar fixed="top" bg="primary" variant="dark">
       <Navbar.Brand>
-        <img src={resumeLogo} width="30px" />
+        <img src={resumeLogo} width="24px" />
         Resume Builder
       </Navbar.Brand>
       <Nav className="mr-auto"></Nav>

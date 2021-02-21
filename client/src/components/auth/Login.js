@@ -1,6 +1,5 @@
 import React from 'react';
-import Link from 'react-router-dom/Link';
-import Redirect from 'react-router-dom/Redirect';
+import { Link, Redirect } from 'react-router-dom';
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -18,7 +17,7 @@ function Login({ login, isAuthenticated }) {
   return (
     <AuthContainer>
       <Formik
-        initialValues={{ name: '', email: '', password: '' }}
+        initialValues={{ email: '', password: '' }}
         validationSchema={loginSchema}
         onSubmit={(values, { setSubmitting }) => {
           login(values);

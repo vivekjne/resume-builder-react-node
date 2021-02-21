@@ -1,16 +1,21 @@
 import React from 'react';
 import Link from 'react-router-dom/Link';
+import Redirect from 'react-router-dom/Redirect';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import AuthContainer from '../layout/AuthContainer';
 import { registerSchema } from '../../utils/validations/authYupSchemas';
+import { setAlert } from '../../redux/actions/alert';
+import { register } from '../../redux/actions/auth';
 
-export default function Register() {
+function Register({ setAlert, register, isAuthenticated }) {
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
+
   return (
     <AuthContainer>
       <Formik
@@ -18,8 +23,7 @@ export default function Register() {
         validationSchema={registerSchema}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
+            register(values);
           }, 400);
         }}
       >
@@ -66,3 +70,15 @@ export default function Register() {
     </AuthContainer>
   );
 }
+
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);

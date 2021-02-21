@@ -1,26 +1,27 @@
 import React from 'react';
 import Link from 'react-router-dom/Link';
+import Redirect from 'react-router-dom/Redirect';
 import { Formik } from 'formik';
-
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../../redux/actions/auth';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import AuthContainer from '../layout/AuthContainer';
 import { loginSchema } from '../../utils/validations/authYupSchemas';
 
-export default function Login() {
+function Login({ login, isAuthenticated }) {
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <AuthContainer>
       <Formik
         initialValues={{ name: '', email: '', password: '' }}
         validationSchema={loginSchema}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+          login(values);
         }}
       >
         {(formik) => (
@@ -58,3 +59,14 @@ export default function Login() {
     </AuthContainer>
   );
 }
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(Login);

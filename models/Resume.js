@@ -62,7 +62,7 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         required: true
       },
-      passingYear: {
+      passingDate: {
         type: Date,
         required: true
       },
@@ -71,8 +71,15 @@ const ProfileSchema = new mongoose.Schema({
       }
     }
   ],
+  skills: {
+    type: [String],
+    required: true
+  },
   social: {
     linkedin: {
+      type: String
+    },
+    twitter: {
       type: String
     }
   },

@@ -21,7 +21,7 @@ const Routes = (props) => {
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/resume/new" component={NewResume} />
+          <PrivateRoute exact path="/resume/new" component={NewResume} />
 
           <PrivateRoute exact path="/" component={Dashboard} />
           <Route component={NotFound} />

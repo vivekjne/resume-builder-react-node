@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import { loadUser } from './redux/actions/auth';
 import setAuthToken from './utils/setAuthToken';
+import ScrollToTop from './components/layout/ScrollToTop';
 
 function App() {
   useEffect(() => {
@@ -25,6 +26,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
+        <ScrollToTop />
         <Fragment>
           <Navbar />
 

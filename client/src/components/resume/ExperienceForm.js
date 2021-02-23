@@ -6,11 +6,13 @@ import {
   checkFormikValid,
   checkFormikInValid
 } from '../../utils/formikHelpers';
+import ScrollToTopOnMount from '../layout/ScrollToTopOnMount';
 function ExperienceForm({ onNext, onBack }) {
   const scrollRef = React.useRef();
 
   return (
     <>
+      <ScrollToTopOnMount />
       <Formik
         initialValues={{
           experience: [
@@ -20,7 +22,7 @@ function ExperienceForm({ onNext, onBack }) {
         validationSchema={resumeExperienceSchema}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
-          onNext();
+          onNext(values);
         }}
       >
         {(formik) => (

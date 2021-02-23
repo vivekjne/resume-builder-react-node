@@ -3,14 +3,17 @@ import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 import Select from 'react-select';
 import { Formik } from 'formik';
 import { resumePrimarySchema } from '../../utils/validations/authYupSchemas';
+import ScrollToTopOnMount from '../layout/ScrollToTopOnMount';
 const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
+  { value: 'PHP', label: 'PHP' },
+  { value: 'HTML', label: 'HTML' },
+  { value: 'CSS', label: 'CSS' },
+  { value: 'Javascript', label: 'Javascript' }
 ];
 function PrimaryForm({ onNext }) {
   return (
     <>
+      <ScrollToTopOnMount />
       <h2>Primary Details</h2>
       <Formik
         initialValues={{
@@ -24,7 +27,7 @@ function PrimaryForm({ onNext }) {
         validationSchema={resumePrimarySchema}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
-          onNext();
+          onNext(values);
         }}
       >
         {(formik) => (

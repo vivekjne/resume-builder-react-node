@@ -6,11 +6,13 @@ import {
   checkFormikValid,
   checkFormikInValid
 } from '../../utils/formikHelpers';
+import ScrollToTopOnMount from '../layout/ScrollToTopOnMount';
 function EducationForm({ onNext, onBack }) {
   const scrollRef = React.useRef();
 
   return (
     <>
+      <ScrollToTopOnMount />
       <Formik
         initialValues={{
           education: [
@@ -25,7 +27,7 @@ function EducationForm({ onNext, onBack }) {
         validationSchema={resumeEducationSchema}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
-          onNext();
+          onNext(values);
         }}
       >
         {(formik) => (

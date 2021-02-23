@@ -206,7 +206,7 @@ function ExperienceForm({ onNext, onBack }) {
               </Col>
               <Col md={{ span: 3, offset: 7 }} className="mb-4">
                 <Button variant="info" type="submit" block>
-                  Next: Skills
+                  Next: Education
                 </Button>
               </Col>
             </Row>

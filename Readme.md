@@ -4,4 +4,4 @@
 
 ## Demo Link
 
-[Heroku demo link](https://rocky-escarpment-32745.herokuapp.com/)
+<a href="https://rocky-escarpment-32745.herokuapp.com/" target="_blank">Heroku Link</a>
